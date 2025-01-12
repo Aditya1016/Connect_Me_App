@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">Adi_AND_Div</string>
+    <string name="password">Password</string>
+    <string name="college_mail_id">College Mail ID</string>
+    <string name="name">Name</string>
+    <string name="college_name">College Name</string>
+    <string name="college_email_id">College Email ID</string>
+    <string name="branch">Branch</string>
+    <string name="batch">Batch</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="signup_password">Signup Password</string>
+
+    <!-- Other strings -->
+    <string-array name="branch_array">
+        <item>CSE</item>
+        <item>EEE</item>
+        <item>ECE</item>
+        <item>MECH</item>
+        <item>PROD</item>
+        <item>CIVIL</item>
+        <item>AI/ML</item>
+    </string-array>
+
+    <string-array name="semester_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </string-array>
+</resources>
