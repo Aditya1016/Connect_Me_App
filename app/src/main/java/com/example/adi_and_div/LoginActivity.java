@@ -70,68 +70,81 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-    private void loginUser(View view) {
+    // private void loginUser(View view) {
+    //     progressBar.setVisibility(View.VISIBLE);
+    //     HashMap<String, String> params = new HashMap<>();
+    //     params.put("collegeMail", collegeMail);
+    //     params.put("password", password);
+
+    //     String apiKey = "http://192.168.29.118:8000/api/v1/users/login";
+    //     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, apiKey, new JSONObject(params),
+    //             new Response.Listener<JSONObject>() {
+    //                 @Override
+    //                 public void onResponse(JSONObject response) {
+    //                     try {
+    //                         if (response.getBoolean("success")) {
+    //                             Toast.makeText(LoginActivity.this, "Login successful. Redirecting...", Toast.LENGTH_SHORT).show();
+    //                             startActivity(new Intent(LoginActivity.this, HomePageActivity.class));
+    //                         } else {
+    //                             Toast.makeText(LoginActivity.this, response.getString("msg"), Toast.LENGTH_SHORT).show();
+    //                         }
+    //                     } catch (JSONException je) {
+    //                         je.printStackTrace();
+    //                         Toast.makeText(LoginActivity.this, "Unexpected response format", Toast.LENGTH_SHORT).show();
+    //                     } finally {
+    //                         progressBar.setVisibility(View.GONE);
+    //                     }
+    //                 }
+    //             },
+    //             new Response.ErrorListener() {
+    //                 @Override
+    //                 public void onErrorResponse(VolleyError error) {
+    //                     progressBar.setVisibility(View.GONE); // Ensure progress bar is hidden
+    //                     NetworkResponse response = error.networkResponse;
+    //                     if (error instanceof ServerError && response != null) {
+    //                         try {
+    //                             String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+    //                             JSONObject obj = new JSONObject(res);
+    //                             Toast.makeText(LoginActivity.this, obj.getString("msg"), Toast.LENGTH_SHORT).show();
+    //                         } catch (JSONException | UnsupportedEncodingException je) {
+    //                             je.printStackTrace();
+    //                             Toast.makeText(LoginActivity.this, "An error occurred while parsing the error response", Toast.LENGTH_SHORT).show();
+    //                         } finally {
+    //                             progressBar.setVisibility(View.GONE);
+    //                         }
+    //                     } else {
+    //                         Toast.makeText(LoginActivity.this, "An unexpected error occurred", Toast.LENGTH_SHORT).show();
+    //                     }
+    //                 }
+    //             }) {
+    //         @Override
+    //         public HashMap<String, String> getHeaders() throws AuthFailureError {
+    //             HashMap<String, String> headers = new HashMap<>();
+    //             headers.put("Content-Type", "application/json");
+    //             return headers;
+    //         }
+    //     };
+
+    //     int socketTimeout = 10000; // Reduce timeout for better responsiveness
+    //     RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+
+    //     jsonObjectRequest.setRetryPolicy(policy);
+    //     RequestQueue requestQueue = Volley.newRequestQueue(this);
+    //     requestQueue.add(jsonObjectRequest);
+    // }
+
+    private void loginUser() {
         progressBar.setVisibility(View.VISIBLE);
-        HashMap<String, String> params = new HashMap<>();
-        params.put("collegeMail", collegeMail);
-        params.put("password", password);
 
-        String apiKey = "http://192.168.29.118:8000/api/v1/users/login";
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, apiKey, new JSONObject(params),
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            if (response.getBoolean("success")) {
-                                Toast.makeText(LoginActivity.this, "Login successful. Redirecting...", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(LoginActivity.this, HomePageActivity.class));
-                            } else {
-                                Toast.makeText(LoginActivity.this, response.getString("msg"), Toast.LENGTH_SHORT).show();
-                            }
-                        } catch (JSONException je) {
-                            je.printStackTrace();
-                            Toast.makeText(LoginActivity.this, "Unexpected response format", Toast.LENGTH_SHORT).show();
-                        } finally {
-                            progressBar.setVisibility(View.GONE);
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        progressBar.setVisibility(View.GONE); // Ensure progress bar is hidden
-                        NetworkResponse response = error.networkResponse;
-                        if (error instanceof ServerError && response != null) {
-                            try {
-                                String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                                JSONObject obj = new JSONObject(res);
-                                Toast.makeText(LoginActivity.this, obj.getString("msg"), Toast.LENGTH_SHORT).show();
-                            } catch (JSONException | UnsupportedEncodingException je) {
-                                je.printStackTrace();
-                                Toast.makeText(LoginActivity.this, "An error occurred while parsing the error response", Toast.LENGTH_SHORT).show();
-                            } finally {
-                                progressBar.setVisibility(View.GONE);
-                            }
-                        } else {
-                            Toast.makeText(LoginActivity.this, "An unexpected error occurred", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }) {
-            @Override
-            public HashMap<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<>();
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-        };
+        // Simulate login success (no API call)
+        Toast.makeText(LoginActivity.this, "Login successful. Redirecting...", Toast.LENGTH_SHORT).show();
 
-        int socketTimeout = 10000; // Reduce timeout for better responsiveness
-        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        // Navigate to home screen
+        startActivity(new Intent(LoginActivity.this, HomePageActivity.class));
 
-        jsonObjectRequest.setRetryPolicy(policy);
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(jsonObjectRequest);
+        progressBar.setVisibility(View.GONE);
     }
+
     public boolean validateData (View view){
         boolean result;
 

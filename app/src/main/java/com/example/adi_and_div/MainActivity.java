@@ -86,69 +86,81 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void registerUser(View view){
-        progressBar.setVisibility(View.VISIBLE);
-        HashMap<String, String> params = new HashMap<>();
-        params.put("name", name);
-        params.put("collegeName", collegeName);
-        params.put("collegeMail", collegeMail);
-        params.put("branch", branch);
-        params.put("batch", batch);
-        params.put("phoneNumber", phone);
-        params.put("password", password);
+    // private void registerUser(View view){
+    //     progressBar.setVisibility(View.VISIBLE);
+    //     HashMap<String, String> params = new HashMap<>();
+    //     params.put("name", name);
+    //     params.put("collegeName", collegeName);
+    //     params.put("collegeMail", collegeMail);
+    //     params.put("branch", branch);
+    //     params.put("batch", batch);
+    //     params.put("phoneNumber", phone);
+    //     params.put("password", password);
 
-        String apiKey = "http://192.168.29.118:8000/api/v1/users/register";
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, apiKey, new JSONObject(params), new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    if(response.getBoolean("success")){
-                        Toast.makeText(MainActivity.this, "User registered successfully", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(MainActivity.this, VerifyOTP.class));
-                    }
-                    progressBar.setVisibility(View.GONE);
-                } catch (JSONException je) {
-                    je.printStackTrace();
-                    Toast.makeText(MainActivity.this, "An error occurred while parsing the error response", Toast.LENGTH_SHORT).show();
-                    progressBar.setVisibility(View.GONE);
-                } finally {
-                    progressBar.setVisibility(View.GONE);
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                NetworkResponse response = error.networkResponse;
-                if(error instanceof ServerError && response != null){
-                    try {
-                        String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers,  "utf-8"));
+    //     String apiKey = "http://192.168.29.118:8000/api/v1/users/register";
+    //     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, apiKey, new JSONObject(params), new Response.Listener<JSONObject>() {
+    //         @Override
+    //         public void onResponse(JSONObject response) {
+    //             try {
+    //                 if(response.getBoolean("success")){
+    //                     Toast.makeText(MainActivity.this, "User registered successfully", Toast.LENGTH_SHORT).show();
+    //                     startActivity(new Intent(MainActivity.this, VerifyOTP.class));
+    //                 }
+    //                 progressBar.setVisibility(View.GONE);
+    //             } catch (JSONException je) {
+    //                 je.printStackTrace();
+    //                 Toast.makeText(MainActivity.this, "An error occurred while parsing the error response", Toast.LENGTH_SHORT).show();
+    //                 progressBar.setVisibility(View.GONE);
+    //             } finally {
+    //                 progressBar.setVisibility(View.GONE);
+    //             }
+    //         }
+    //     }, new Response.ErrorListener() {
+    //         @Override
+    //         public void onErrorResponse(VolleyError error) {
+    //             NetworkResponse response = error.networkResponse;
+    //             if(error instanceof ServerError && response != null){
+    //                 try {
+    //                     String res = new String(response.data, HttpHeaderParser.parseCharset(response.headers,  "utf-8"));
                         
-                        JSONObject obj = new JSONObject(res);
-                        Toast.makeText(MainActivity.this, obj.getString("msg"), Toast.LENGTH_SHORT).show();
+    //                     JSONObject obj = new JSONObject(res);
+    //                     Toast.makeText(MainActivity.this, obj.getString("msg"), Toast.LENGTH_SHORT).show();
 
-                    } catch (JSONException | UnsupportedEncodingException je) {
-                        je.printStackTrace();
-                        Toast.makeText(MainActivity.this, "An error occurred while parsing the error response", Toast.LENGTH_SHORT).show();
-                    } finally {
-                        progressBar.setVisibility(View.GONE);
-                    }
-                }
-            }
-        }) {
-          @Override
-          public HashMap<String, String> getHeaders() throws AuthFailureError {
-              HashMap<String, String> headers = new HashMap<>();
-              headers.put("Content-Type", "application/json");
+    //                 } catch (JSONException | UnsupportedEncodingException je) {
+    //                     je.printStackTrace();
+    //                     Toast.makeText(MainActivity.this, "An error occurred while parsing the error response", Toast.LENGTH_SHORT).show();
+    //                 } finally {
+    //                     progressBar.setVisibility(View.GONE);
+    //                 }
+    //             }
+    //         }
+    //     }) {
+    //       @Override
+    //       public HashMap<String, String> getHeaders() throws AuthFailureError {
+    //           HashMap<String, String> headers = new HashMap<>();
+    //           headers.put("Content-Type", "application/json");
 
-              return params;
-          }
-        };
+    //           return params;
+    //       }
+    //     };
 
-        int socketTimeout = 10000;
-        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+    //     int socketTimeout = 10000;
+    //     RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
 
-        RequestQueue requestQueue  = Volley.newRequestQueue(this);
-        requestQueue.add(jsonObjectRequest);
+    //     RequestQueue requestQueue  = Volley.newRequestQueue(this);
+    //     requestQueue.add(jsonObjectRequest);
+    // }
+
+    private void registerUser(View view) {
+        progressBar.setVisibility(View.VISIBLE);
+
+        // Simulate successful registration (no API call)
+        Toast.makeText(MainActivity.this, "User registered successfully", Toast.LENGTH_SHORT).show();
+
+        // Navigate to OTP verification (or next activity)
+        startActivity(new Intent(MainActivity.this, VerifyOTP.class));
+
+        progressBar.setVisibility(View.GONE);
     }
 
     public boolean validateData(View view){
